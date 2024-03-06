@@ -10,6 +10,10 @@ import (
 )
 
 func main() {
+	//configPath := "app.ini"
+
+	//settings.Setup(configPath)
+
 	defer logger.Sync()
 	cmd.Execute()
 }

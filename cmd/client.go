@@ -6,7 +6,7 @@ import (
 )
 
 var hearBeatCmd = &cobra.Command{
-	Use: "client_heartbeat",
+	Use: "heartbeat",
 	Run: func(cmd *cobra.Command, args []string) {
 		client.HeartBeat()
 	},

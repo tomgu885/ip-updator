@@ -19,6 +19,9 @@ iptables -A FORWARD -i eth0 -p tcp --dport 10022 -j ACCEPT
 
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 10143 -j DNAT --to-destination 27.159.184.79:10143
 iptables -A FORWARD -i eth0 -p tcp --dport 10143 -j ACCEPT
+
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 10145 -j DNAT --to-destination 121.227.26.24:10145
+iptables -A FORWARD -i eth0 -p tcp --dport 10145 -j ACCEPT
 ```
 
 ## delete
@@ -27,3 +30,6 @@ iptables -A FORWARD -i eth0 -p tcp --dport 10143 -j ACCEPT
 #iptables -t nat -v -L PREROUTING -n --line-number
 #iptables -t nat -D PREROUTING {rule-number-here}
 ```
+
+我想要个福建福州的
+苏州

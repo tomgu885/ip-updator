@@ -11,5 +11,6 @@ func HeartBeat() {
 
 	for _ = range c.C {
 		fmt.Println("time:", time.Now().Unix())
+		Report()
 	}
 }

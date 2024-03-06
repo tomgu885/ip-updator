@@ -5,15 +5,28 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"iptables/settings"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
+var (
+	cfgFile string
+)
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "ip_tools",
-	Short: "A brief description of your application",
+	Short: "好玩",
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		//fmt.Println("PersistentPreRunE", cfgFile)
+		err := settings.Setup(cfgFile)
+		if err != nil {
+			return err
+		}
+		return nil
+	},
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
@@ -43,12 +56,17 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "app.yaml", "config file")
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 	rootCmd.AddCommand(hearBeatCmd)
+	rootCmd.AddCommand(configTestCmd)
+	rootCmd.AddCommand(reportTestCmd)
 
 	rootCmd.AddCommand(natListCmd)
 	rootCmd.AddCommand(list2Cmd)
 	rootCmd.AddCommand(delRuleCmd)
 	rootCmd.AddCommand(addRuleCmd)
 	rootCmd.AddCommand(serveCmd)
+
 }

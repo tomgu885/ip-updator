@@ -1,0 +1,12 @@
+## possible value: production , development
+
+global:
+  mode: development
+  secret: "feaz$as"
+server:
+  port:  8091
+
+client:
+  server: http://192.168.10.152:8091
+  localPort: 10122
+  name: suzhou1

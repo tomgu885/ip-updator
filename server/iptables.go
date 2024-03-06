@@ -85,17 +85,13 @@ func ListNatWithNumber() (rules []model.NatRule, err error) {
 		logger.Errorf("err")
 		return
 	}
-	//fmt.Println("out:", string(out))
+
 	outlines := strings.Split(string(out), "\n")
-	//rules := []NatRule{}
-	for idx, line := range outlines {
+	for _, line := range outlines {
 		if len(line) == 0 {
 			continue
 		}
-		fmt.Printf("%d|%s|\n", idx, line)
 
-		//fmt.Println("parts4:", parts[4])
-		//fmt.Println("parts5:", parts[5])
 		parts := strings.Fields(line)
 		ruleNum, errN := strconv.Atoi(parts[0])
 		if errN != nil {
@@ -103,22 +99,8 @@ func ListNatWithNumber() (rules []model.NatRule, err error) {
 			continue
 		}
 
-		//fmt.Println("==================")
-
-		//fmt.Printf("len:%d\n", len(parts))
-		//fmt.Println("parts0:", parts[0])
-		//fmt.Println("parts1:", parts[1])
-		//fmt.Println("parts2:", parts[2])
-		//fmt.Println("parts3:", parts[3])
-		//fmt.Println("parts7:", parts[7])
-		//fmt.Println("parts8:", parts[8])
-
 		portParts := strings.Split(parts[7], ":")
 		toParts := strings.Split(parts[8], ":")
-		fmt.Printf("num :%d", ruleNum)
-
-		fmt.Printf("portParts: len: %d\n", len(portParts))
-		fmt.Printf("toParts: len: %d\n", len(toParts))
 
 		listenPort, _ := strconv.Atoi(portParts[1])
 		forwardIp := toParts[1]
@@ -131,10 +113,6 @@ func ListNatWithNumber() (rules []model.NatRule, err error) {
 			ToPort:     foreardPort,
 		})
 	}
-	fmt.Printf("rules: %v\n", rules)
+
 	return
 }
-
-//func execute()  {
-//
-//}
