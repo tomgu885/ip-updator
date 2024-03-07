@@ -15,12 +15,12 @@ After=network.target network-online.target
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/sysconfig/shadowsocks-libev
 User=nobody
 Group=nobody
 LimitNOFILE=32768
-WORK
-ExecStart=/usr/bin/ss-server -c "$CONFFILE" $DAEMON_ARGS
+WorkingDirectory=/usr/local/ip-update
+Restart=always
+ExecStart=/usr/local/ip-update/updator
 
 [Install]
 WantedBy=multi-user.target

@@ -7,6 +7,6 @@ server:
   port:  8091
 
 client:
-  server: http://192.168.10.152:8091
-  localPort: 10122
-  name: suzou1
+  server: http://ip-update.4cdn.xyz:8091
+  localPort: 10024
+  name: xuzhou1

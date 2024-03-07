@@ -13,6 +13,8 @@ import (
 func RunServer() {
 	r := gin.Default()
 
+	r.SetTrustedProxies([]string{"127.0.0.1"})
+
 	r.NoRoute(func(c *gin.Context) {
 		c.String(http.StatusOK, "veni vidi vici")
 	})
@@ -85,7 +87,7 @@ func report(c *gin.Context) {
 			break
 		}
 	}
-
+	logger.Infof("report|%s|%s:%d rules not found", req.Name, clientIp, req.ToPort)
 	c.JSON(http.StatusOK, "ok")
 }
 

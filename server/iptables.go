@@ -95,7 +95,6 @@ func ListNatWithNumber() (rules []model.NatRule, err error) {
 		parts := strings.Fields(line)
 		ruleNum, errN := strconv.Atoi(parts[0])
 		if errN != nil {
-			fmt.Println("this line is not number")
 			continue
 		}
 

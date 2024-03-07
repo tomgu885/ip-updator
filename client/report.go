@@ -17,7 +17,7 @@ func init() {
 
 func Report() (err error) {
 	data := model.ReportReq{
-		Name:   "test-1",
+		Name:   settings.GetClient().Name,
 		ToPort: settings.GetClient().LocalPort,
 	}
 
