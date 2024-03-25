@@ -16,9 +16,14 @@ func init() {
 }
 
 func Report() (err error) {
+	_type := "iptables"
+	if "gost" == settings.GetClient().Type {
+		_type = "gost"
+	}
 	data := model.ReportReq{
 		Name:   settings.GetClient().Name,
 		ToPort: settings.GetClient().LocalPort,
+		Type:   _type,
 	}
 
 	data.MakeSign()

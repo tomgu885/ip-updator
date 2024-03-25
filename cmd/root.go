@@ -65,8 +65,11 @@ func init() {
 
 	rootCmd.AddCommand(natListCmd)
 	rootCmd.AddCommand(list2Cmd)
+	rootCmd.AddCommand(gostListCmd)
+	rootCmd.AddCommand(gostRunCmd)
 	rootCmd.AddCommand(delRuleCmd)
 	rootCmd.AddCommand(addRuleCmd)
+
 	rootCmd.AddCommand(serveCmd)
 
 }

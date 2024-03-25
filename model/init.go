@@ -19,6 +19,7 @@ type ReportReq struct {
 	Sign      string `json:"sign"`
 	Name      string `json:"name"`
 	ToPort    int    `json:"to_port"`
+	Type      string `json:"type"`
 }
 
 func (r *ReportReq) MakeSign() {
@@ -35,7 +36,7 @@ func (r *ReportReq) SignValid() bool {
 	if diff < 0 {
 		diff = -diff
 	}
-	if diff > 30 {
+	if diff > 120 {
 		logger.Infof("timestamp is too large r.Time:%d , current:%d diff:%d", r.Timestamp, _now, diff)
 		return false
 	}

@@ -13,6 +13,7 @@ type Client struct {
 	Server    string `json:"server" yaml:"server"`
 	Name      string `json:"name" yaml:"name"`
 	LocalPort int    `json:"local_port" yaml:"localPort"`
+	Type      string `json:"type" yaml:"type"`
 }
 
 type Global struct {

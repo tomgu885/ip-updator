@@ -45,6 +45,63 @@ var reportTestCmd = &cobra.Command{
 	Short: "report test",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("reporting...")
+		fmt.Println("name:", settings.GetClient().Name)
+		fmt.Println("port:", settings.GetClient().LocalPort)
+		fmt.Println("type:", settings.GetClient().Type)
+		fmt.Println("server:", settings.GetClient().Server)
 		return client.Report()
+	},
+}
+
+var gostRunCmd = &cobra.Command{
+	Use: "gost_run",
+	Run: func(cmd *cobra.Command, args []string) {
+		port := 8001
+		if len(args) > 0 {
+			var err error
+			port, err = strconv.Atoi(args[0])
+			if err != nil {
+				fmt.Println("failed to convert number:", err.Error())
+				return
+			}
+		}
+
+		nodeIp := "123.0.0.1"
+		if len(args) >= 2 {
+			nodeIp = args[1]
+		}
+		updated, err := server.RunGostPortAndIp(port, nodeIp)
+		if err != nil {
+			fmt.Println("gost_run failed:", err)
+			return
+		}
+
+		fmt.Printf("updated: %t\n", updated)
+		// end of run
+	},
+}
+
+var gostListCmd = &cobra.Command{
+	Use: "gost_list",
+	Run: func(cmd *cobra.Command, args []string) {
+		port := 8001
+
+		if len(args) > 0 {
+			var err error
+			port, err = strconv.Atoi(args[0])
+			if err != nil {
+				fmt.Println("failed to convert number:", err.Error())
+				return
+			}
+
+		}
+		pid, oldIp, err := server.GetPidGostByPort(port)
+		if err != nil {
+			fmt.Println("failed to getPid:", err)
+			return
+		}
+
+		fmt.Println("pid:", pid)
+		fmt.Println("oldIp:", oldIp)
 	},
 }

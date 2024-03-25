@@ -5,12 +5,17 @@
 #  the Free Software Foundation; either version 3 of the License, or
 #  (at your option) any later version.
 #
+## systemctl enable --now shadowsocks-libev
+# Created symlink from /etc/systemd/system/multi-user.target.wants/shadowsocks-libev.service to /usr/lib/systemd/system/shadowsocks-libev.service.
 #  This file is default for RPM packaging. See also
-#  /etc/sysconfig/shadowsocks-libev for environment variables.
-
+## mkdir /usr/local/ip-update
+## cd /usr/local/ip-update
+## wget http://94.103.4.41/updator-amd64-20240320194542
+## ln -sfn updator-amd64-20240316202211 updator-linux
+## systemctl restart
+## vim app.yaml
 [Unit]
-Description=Shadowsocks-libev Default Server Service
-Documentation=man:shadowsocks-libev(8)
+Description=updator ip Server Service
 After=network.target network-online.target
 
 [Service]
@@ -20,7 +25,7 @@ Group=nobody
 LimitNOFILE=32768
 WorkingDirectory=/usr/local/ip-update
 Restart=always
-ExecStart=/usr/local/ip-update/updator
+ExecStart=/usr/local/ip-update/main-linux -c /usr/local/ip-update/app.yaml
 
 [Install]
 WantedBy=multi-user.target
